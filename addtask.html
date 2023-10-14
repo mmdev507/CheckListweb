@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>
+            Añadir una tarea
+        </title>
+        <meta charset="UTF-8">
+        <style>
+            .kanban-board {
+              display: flex;
+              justify-content: space-between;
+            }
+        
+            .kanban-column {
+              flex: 1;
+              margin: 10px;
+              padding: 10px;
+              border: 1px solid #ccc;
+              background-color: #f9f9f9;
+            }
+        
+            .kanban-card {
+              margin: 5px;
+              padding: 5px;
+              border: 1px solid #999;
+              background-color: #fff;
+            }
+        
+            .icon-bar {
+              background-color: #333;
+              overflow: hidden;
+            }
+        
+            .icon-bar a {
+              float: right;
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 15px 20px;
+              text-decoration: none;
+              font-size: 20px;
+            }
+        
+            .icon-bar a:hover {
+              background-color: #555;
+            }
+            
+          </style>
+    </head>
+    <body>
+        <div class="icon-bar">
+            <a href="#">Reporte</a>
+            <a href="#">Tablero</a>
+            <a href="#">Inicio</a>
+        </div>
+        <center>
+        <p><h1>Agregar una tarea</h1></p>
+        <form action="/action_page.php">
+            <label for="Titulo">Titutlo:</label><br>
+            <input type="text" id="title" name="title" value=""><br>
+            <label for="descrip">Descripcion:</label><br>
+            <input type="text" id="descrip" name="descrip" value=""><br>
+            <label for="fname">Estado:</label><br><br>
+            <select name="estado" id="estado">
+                <option value="defaultvalue">Por hacer</option>
+              </select><br><br>
+            <label for="lname">Fecha de entrega:</label><br>
+            <input type="text" id="fechadeentrega" name="fechadeentrega" value=""><br>
+            <label for="tipotarea">Tipo de tarea:</label><br>
+            <input type="text" id="tipotarea" name="tipotarea" value=""><br><br>
+            <input type="submit" value="Agregar">
+        </form> 
+        </center>
+    </body>
+</html>
