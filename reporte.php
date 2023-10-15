@@ -43,6 +43,21 @@
             .icon-bar a:hover {
               background-color: #555;
             }
+
+             /* Estilo para el botón de tipo "submit" */
+        input[type="submit"] {
+            background-color: #0097B2;
+            color: #fff;
+            padding: 2px 4px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        /* Cambiar el estilo cuando se pasa el mouse sobre el botón */
+        input[type="submit"]:hover {
+            background-color: #0066CC;
+        }
             
           </style>
 <LINK REL="stylesheet" TYPE="text/css" HREF="css/estilo.css">
@@ -54,7 +69,7 @@
             <a href="#">Inicio</a>
         </div>
 <Center>       
-<H1>Consultar Tareas</H1>
+<H1>Reporte de Tareas</H1>
         </Center> 
 
         <FORM NAME="FormFiltro" METHOD="post" ACTION="reporte.php">
@@ -64,7 +79,30 @@ Filtrar por:
 
 <INPUT NAME="ConsultarFiltro"   VALUE="Tareas de hoy" TYPE="submit"/>
 <INPUT NAME="ConsultarTodos "   VALUE="Ver todas las tareas" TYPE="submit"/>
-</FORM>     
+</FORM>   
+<FORM action="reporte.php" method="POST">
+        <label>Desde:</label>
+        <input type="date" name="desde" required>
+        <label>Hasta:</label>
+        <input type="date" name="hasta" required>
+        <input NAME="fechas" type="submit" value="Consultar Tareas">
+  </FORM>  
+  <FORM method="post">
+    <select id="estado" name="estado">
+        <option value="1">Por Hacer</option>
+        <option value="2">En progreso</option>
+        <option value="3">Terminado</option>
+    </select>
+    <input type="submit" name="ConsultarEstado" value="Tareas por Estado" />
+          </FORM>
+          <FORM method="post">
+    <select id="tipo" name="tipo">
+        <option value="1">Personal</option>
+        <option value="2">Universidad</option>
+        <option value="3">Trabajo</option>
+    </select>
+    <input type="submit" name="Consultartipo" value="Tareas por Tipo" />
+          </FORM>        
 <?php
 
 require_once("class/tareas.php");
@@ -84,6 +122,48 @@ if(array_key_exists('ConsultarFiltro', $_POST)) {
     $obj_tareas = new tarea();
     $tareas = $obj_tareas->consultar_tareas_hoy();
 }
+
+if(array_key_exists('ConsultarEstado', $_POST)) {
+  
+  $estado = $_POST['estado'];
+  
+  $obj_tareas = new tarea();
+  $tareas = $obj_tareas->consultar_tareas_estado($estado);
+
+  if ($tareas !== null) {
+    $nfilas = count($tareas);
+} else {
+  echo "No hay registros por estado";
+}
+}
+
+if(array_key_exists('Consultartipo', $_POST)) {
+  
+  $tipo = $_POST['tipo'];
+  
+  $obj_tareas = new tarea();
+  $tareas = $obj_tareas->consultar_tareas_tipo($tipo);
+
+  if ($tareas !== null) {
+    $nfilas = count($tareas);
+} else {
+  echo "No hay registros por tipo";
+}
+}
+
+if (array_key_exists('fechas', $_POST)) {
+  $desde = $_POST['desde'];
+  $hasta = $_POST['hasta'];
+
+  $obj_tareas = new tarea();
+  $tareas = $obj_tareas->consultar_tareas_fechas($desde, $hasta);
+
+  if ($tareas !== null) {
+      $nfilas = count($tareas);
+  } else {
+    echo "No hay registros";
+  }
+} 
 
 $nfilas=count($tareas);
 
@@ -119,7 +199,7 @@ print("</TABLE>\n");
 }
 
 else {
-    print ("No hay tareas disponibles");
+    print (" No hay tareas disponibles");
 }
 
 
