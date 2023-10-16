@@ -54,7 +54,7 @@
         </div>
         <center>
         <p><h1>Agregar una tarea</h1></p>
-        <form action="/tareas.php" method="post">
+        <form action="taskpage.php" method="post">
             <label for="Titulo">Titutlo:</label><br>
             <input type="text" id="title" name="title" value=""><br><br>
             <label for="descrip">Descripcion:</label><br>
@@ -78,6 +78,25 @@
             <INPUT NAME="Guardartarea"   VALUE="Agregar" TYPE="submit"/>
         </form> 
         </center>
+        <?php
 
+require_once("class/tareas.php");
+
+        if (array_key_exists('Guardartarea', $_POST)) {
+            $titulo = $_POST['title'];
+            $descripcion = $_POST['descrip'];
+            $estadoid = $_POST['estado'];
+            $Fecha_Entrega = $_POST['fechadeentrega'];
+            $responsable = $_POST['responsable'];
+            $tipoid = $_POST['tipo'];
+
+  $obj_tareas = new tarea();
+  $tareas = $obj_tareas->guardar_tarea_hoy($titulo, $descripcion, $estadoid, $Fecha_Entrega, $responsable, $tipoid);
+
+  echo $tareas;
+  
+} 
+
+?>
     </body>
 </html>

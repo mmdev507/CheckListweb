@@ -65,7 +65,7 @@
 <BODY>
 <div class="icon-bar">
             <a href="\CheckListweb\reporte.php">Reporte</a>
-            <a href="#">Tablero</a>
+            <a href="\CheckListweb\index.php">Tablero</a>
             <a href="#">Inicio</a>
         </div>
 <Center>       
