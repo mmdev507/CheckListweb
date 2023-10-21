@@ -73,7 +73,7 @@
   <body>
       <div class="icon-bar">
           <a href="\CheckListweb\reporte.php">Reporte</a>
-          <a href="\CheckListweb\index.php">Tablero</a>
+          <a href="\CheckListweb\index.php">Dashboard</a>
           <a href="#">Inicio</a>
       </div>
 
@@ -113,26 +113,32 @@ $tareas3 = new tarea();
 
 echo '<div class="kanban-board">';
 
-$resultado1 = $tareas->consultar_tareas_estado1();
+  $resultado1 = $tareas->consultar_tareas_estado1();
 
-echo '<div class="kanban-column">';
-echo '<div class="kanban-card">';
-foreach ($resultado1 as $row) {
-    echo '<div class="kanban-card">';
-    echo '<div class="card-title1">';
-    echo '<div class="card-title">' . $row['titulo'] . '</div>';
-    echo '<div class="card-description">' . $row['descripcion'] . '</div>';
-    echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
-    echo '</div>';
-    echo '</div>';
+  
+  echo '<div class="kanban-column">';
+  echo '<div class="kanban-card">';
+  if (empty($resultado1)) {
+    echo "No hay tareas registradas.";
+  } else {
+  foreach ($resultado1 as $row) {
+      echo '<div class="kanban-card">';
+      echo '<div class="card-title1">';
+    //  echo '<div class="card-title">' . $row['id'] . '</div>';
+      echo '<div class="card-title">' . $row['titulo'] . '</div>';
+      echo '<div class="card-description">' . $row['descripcion'] . '</div>';
+      echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+      echo '</div>';
+      echo '</div>';
 
-    echo '<div class="card-buttons">';
-    echo '<button class="card-button">Modificar</button>';
-    echo '<button class="card-button">Eliminar</button>';
-    echo '</div>';
+      echo '<div class="card-buttons">';
+      echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
+      echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
+      echo '</div>';
+  }
 }
-echo '</div>';
-echo '</div>';
+  echo '</div>';
+  echo '</div>';
 
 
 $resultado2 = $tareas2->consultar_tareas_estado2();
@@ -141,9 +147,13 @@ $resultado2 = $tareas2->consultar_tareas_estado2();
 echo '<div class="kanban-column">';
 echo '<div class="kanban-card">';
 
+if (empty($resultado2)) {
+  echo "No hay tareas registradas."; 
+} else {
 foreach ($resultado2 as $row) {
     echo '<div class="kanban-card">';
     echo '<div class="card-title2">';
+    //  echo '<div class="card-title">' . $row['id'] . '</div>';
     echo '<div class="card-title">' . $row['titulo'] . '</div>';
     echo '<div class="card-description">' . $row['descripcion'] . '</div>';
     echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
@@ -152,10 +162,13 @@ foreach ($resultado2 as $row) {
 
 
     echo '<div class="card-buttons">';
-    echo '<button class="card-button">Modificar</button>';
-    echo '<button class="card-button">Eliminar</button>';
+    echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
+    echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
     echo '</div>';
 }
+}
+
+
 echo '</div>';
 echo '</div>';
 
@@ -167,9 +180,13 @@ $resultado3 = $tareas3->consultar_tareas_estado3();
 echo '<div class="kanban-column">';
 echo '<div class="kanban-card">';
 
+if (empty($resultado1)) {
+  echo "No hay tareas registradas.";
+} else {
 foreach ($resultado3 as $row) {
     echo '<div class="kanban-card">';
     echo '<div class="card-title3">';
+    //  echo '<div class="card-title">' . $row['id'] . '</div>';
     echo '<div class="card-title">' . $row['titulo'] . '</div>';
     echo '<div class="card-description">' . $row['descripcion'] . '</div>';
     echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
@@ -177,14 +194,15 @@ foreach ($resultado3 as $row) {
     echo '</div>';
 
     echo '<div class="card-buttons">';
-    echo '<button class="card-button">Modificar</button>';
-    echo '<button class="card-button">Eliminar</button>';
+    echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
+    echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
     echo '</div>';
+}
 }
 echo '</div>';
 echo '</div>';
 
-
 ?>
+</script>
   </body>
 </html>
