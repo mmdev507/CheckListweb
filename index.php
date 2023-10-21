@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your To Do List!</title>
+  <title>Dashboard</title>
   <meta charset="UTF-8">
   <style>
 
@@ -48,6 +48,7 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            text-decoration: none;
       }
 
       .icon-bar {
@@ -78,7 +79,7 @@
       </div>
 
       <div><h1><center>Dashboard</center></h1></div>
-      
+      <div><h5><center>En esta pagina podrás visualizar todas tus tareas, dependiendo del estado en que se encuentren. "La organización es la clave para el éxito y la eficiencia en cualquier tarea."</center></h5></div>
       <br>
       <form action="taskpage.php">
         <button class="card-button" type="submit">Agregar tarea</button>
@@ -107,6 +108,21 @@
 
 require_once("class/tareas.php");
 
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+
+  $obj_tareas = new tarea();
+  $tareas = $obj_tareas->eliminar_registro($id);
+  
+  if ($tareas === "Registro eliminado correctamente.") {
+    header('Location: eliminadoexitoso.php');
+    exit;
+  } else {
+    echo $tareas;
+  }
+
+} 
+
 $tareas = new tarea(); 
 $tareas2 = new tarea();
 $tareas3 = new tarea();
@@ -128,12 +144,18 @@ echo '<div class="kanban-board">';
       echo '<div class="card-title">' . $row['titulo'] . '</div>';
       echo '<div class="card-description">' . $row['descripcion'] . '</div>';
       echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+
+      
+      if (strtotime($row['fecha_modificacion']) !== false) {
+      echo '<div class="bandera"><img src="\CheckListweb\img\Banderaroja.png"  width="20" height="20"></div>';
+  }
+
       echo '</div>';
       echo '</div>';
 
       echo '<div class="card-buttons">';
       echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
-      echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
+      echo '<a href="index.php?id=' . $row['id'] . '"  class="card-button">Eliminar</a>';
       echo '</div>';
   }
 }
@@ -157,13 +179,18 @@ foreach ($resultado2 as $row) {
     echo '<div class="card-title">' . $row['titulo'] . '</div>';
     echo '<div class="card-description">' . $row['descripcion'] . '</div>';
     echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+
+    
+    if (strtotime($row['fecha_modificacion']) !== false) {
+      echo '<div class="bandera"><img src="\CheckListweb\img\Banderaroja.png"  width="20" height="20"></div>';
+  }
     echo '</div>';
     echo '</div>';
 
 
     echo '<div class="card-buttons">';
     echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
-    echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
+    echo '<a href="index.php?id=' . $row['id'] . '"  class="card-button">Eliminar</a>';
     echo '</div>';
 }
 }
@@ -190,12 +217,17 @@ foreach ($resultado3 as $row) {
     echo '<div class="card-title">' . $row['titulo'] . '</div>';
     echo '<div class="card-description">' . $row['descripcion'] . '</div>';
     echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+
+    if (strtotime($row['fecha_modificacion']) !== false) {
+      echo '<div class="bandera"><img src="\CheckListweb\img\Banderaroja.png"  width="20" height="20"></div>';
+  }
+
     echo '</div>';
     echo '</div>';
 
     echo '<div class="card-buttons">';
     echo '<a href="modificar.php?id=' . $row['id'] . '" class="card-button">Modificar</a>';
-    echo '<button id="eliminar-btn" data-id='.$row['id'].' class="card-button">Eliminar</button>';
+    echo '<a href="index.php?id=' . $row['id'] . '"  class="card-button">Eliminar</a>';
     echo '</div>';
 }
 }
@@ -203,6 +235,6 @@ echo '</div>';
 echo '</div>';
 
 ?>
-</script>
+
   </body>
 </html>

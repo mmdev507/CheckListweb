@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Modificación Exitosa
+            Eliminado Exitosa
         </title>
         <meta charset="UTF-8">
         <style>
@@ -69,7 +69,7 @@
         <br><br>
 <?php
 
-echo "Se modifico correctamente la tarea, vuelve al Dashboard <br><br>";
+echo "Se elimino la tarea correctamente, vuelve al Dashboard <br><br>";
 
 echo '<a href="index.php" class="card-button">Ir al Dashboard</a>';
 
