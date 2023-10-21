@@ -25,7 +25,7 @@ public function consultar_tareas(){
     $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
 
     if (!$resultado){ 
-        echo "No hay tareas |";
+        echo "No hay tareas disponibles |";
     } 
     else {
         return $resultado;
@@ -135,8 +135,8 @@ public function consultar_tareas_tipo($tipo){
 
 public function guardar_tarea_hoy($titulo, $descripcion, $estadoid, $Fecha_Entrega, $responsable, $tipoid){
 
-    $titulo = $_POST ['title'];
-    $descripcion = $_POST['descrip'];
+    $titulo = $_POST ['titulo'];
+    $descripcion = $_POST['descripcion'];
     $estadoid = $_POST['estado'];
     $Fecha_Entrega = $_POST['fechadeentrega'];
     $responsable = $_POST['responsable'];
@@ -153,6 +153,26 @@ public function guardar_tarea_hoy($titulo, $descripcion, $estadoid, $Fecha_Entre
 
 }
 
+public function modificar_tarea($titulo, $descripcion, $estadoid, $Fecha_Entrega, $responsable, $tipoid){
+    $id = $_POST['id']; 
+    $titulo = $_POST ['titulo'];
+    $descripcion = $_POST['descripcion'];
+    $estadoid = $_POST['estado'];
+    $Fecha_Entrega = $_POST['fechadeentrega'];
+    $responsable = $_POST['responsable'];
+    $tipoid = $_POST['tipo'];
+ 
+
+    $instruccion = "CALL sp_modificar_tarea('$id','$titulo', '$descripcion', '$estadoid', '$Fecha_Entrega', '$responsable', '$tipoid')";
+
+    if ($this->_db->query($instruccion) === TRUE) {
+        return "Los datos se han guardado correctamente.";
+    } else {
+        return "Error al guardar los datos: " . $this->_db->error;
+    }
+
+}
+
 public function consultar_tareas_estado1(){
     $instruccion = "CALL sp_listar_tareas_estado1";
     $consulta = $this->_db->query($instruccion);
@@ -160,7 +180,7 @@ public function consultar_tareas_estado1(){
 
 
     if (!$resultado1) { 
-        echo "No hay tareas |";
+        echo "";
     } else {
         return $resultado1;
     }
@@ -173,7 +193,7 @@ public function consultar_tareas_estado2(){
     $resultado2 = $consulta2->fetch_all(MYSQLI_ASSOC);
     
     if (!$resultado2) { 
-        echo "No hay tareas |";
+        echo "";
     } else {
         return $resultado2;
     }
@@ -186,11 +206,34 @@ public function consultar_tareas_estado3(){
 
 
     if (!$resultado3) { 
-        echo "No hay tareas |";
+        echo "";
     } else {
         return $resultado3;
     }
 }
+
+public function consultar_registro($id) {
+    $instruccion = "CALL sp_consultar_tarea($id)";
+    $consulta = $this->_db->query($instruccion);
+
+    if ($consulta) { 
+        // Verifica si la consulta se realizó con éxito
+        $resultado = $consulta->fetch_assoc();
+        $consulta->close(); // Cierra la consulta
+
+        if ($resultado) {
+            // Si se encontraron resultados
+            return $resultado;
+        } else {
+            echo "No se encontraron registros con el ID proporcionado.";
+        }
+    } else {
+        echo "Error al ejecutar la consulta en la base de datos.";
+    }
+
+    return null;
+}
+
 
 
 }

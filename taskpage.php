@@ -49,16 +49,16 @@
     <body>
         <div class="icon-bar">
             <a href="\CheckListweb\reporte.php">Reporte</a>
-            <a href="\CheckListweb\index.php">Tablero</a>
+            <a href="\CheckListweb\index.php">Dashboard</a>
             <a href="#">Inicio</a>
         </div>
         <center>
         <p><h1>Agregar una tarea</h1></p>
         <form action="taskpage.php" method="post">
-            <label for="Titulo">Titutlo:</label><br>
-            <input type="text" id="title" name="title" value=""><br><br>
+            <label for="Titu">Titutlo:</label><br>
+            <input type="text" id="titulo" name="titulo" value=""><br><br>
             <label for="descrip">Descripcion:</label><br>
-            <input type="text" id="descrip" name="descrip" value=""><br><br>
+            <input type="text" id="descripcion" name="descripcion" value=""><br><br>
             <label for="fname">Estado:</label><br>
               <select id="estado" name="estado">
                 <option value="1">Por Hacer</option>
@@ -83,8 +83,8 @@
 require_once("class/tareas.php");
 
         if (array_key_exists('Guardartarea', $_POST)) {
-            $titulo = $_POST['title'];
-            $descripcion = $_POST['descrip'];
+            $titulo = $_POST['titulo'];
+            $descripcion = $_POST['descripcion'];
             $estadoid = $_POST['estado'];
             $Fecha_Entrega = $_POST['fechadeentrega'];
             $responsable = $_POST['responsable'];

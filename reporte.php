@@ -181,6 +181,7 @@ print ("<TH>Tipo Tarea</TH>\n");
 print ("<TH>Fecha Modificación</TH>\n");
 print ("</TR\n");
 
+
 foreach ( $tareas as $resultado) {
     print ("<TR>\n");
     print ("<TD>". $resultado['id'] . "</TD>\n");
