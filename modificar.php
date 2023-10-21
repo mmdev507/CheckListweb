@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Modificar una tarea
+            Modificar
         </title>
         <meta charset="UTF-8">
         <style>
@@ -43,6 +43,36 @@
             .icon-bar a:hover {
               background-color: #555;
             }
+
+            form input[type="submit"] {
+              padding: 5px 10px;
+            background: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+}
+            
+            form input[type="text"] {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+}
+
+form input[type="text1"] {
+    width: 400px;
+    height: 30px;
+}
+
+form input[type="text2"] {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+}
+            form label {
+    font-weight: bold;
+}
             
           </style>
     </head>
@@ -93,11 +123,11 @@ echo $tareas;
         <form action="modificar.php" method="post">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <label for="Titulo">Titutlo:</label><br>
-            <input type="text" id="titulo" name="titulo" value="<?php echo $row['titulo']; ?>"><br><br>
+            <input type="text" id="titulo" name="titulo" value="<?php echo $row['titulo']; ?>" required><br><br>
             <label for="descrip">Descripcion:</label><br>
-            <input type="text" id="descripcion" name="descripcion" value="<?php echo $row['descripcion']; ?>"><br><br>
+            <input type="text1" id="descripcion" name="descripcion" value="<?php echo $row['descripcion']; ?>" required><br><br>
             <label for="fname">Estado:</label><br>
-              <select id="estado" name="estado">
+              <select id="estado" name="estado" required>
                 <option value="1" <?php if ($row['estado'] == "Por Hacer") echo "selected"; ?>>Por Hacer</option>
                 <option value="2"<?php if ($row['estado'] == "En progreso") echo "selected"; ?>>En progreso</option>
                 <option value="3" <?php if ($row['estado'] == "Terminado") echo "selected"; ?>>Terminado</option>
@@ -105,14 +135,14 @@ echo $tareas;
             <label>Fecha de Entrega</label><br>
             <input type="date" name="fechadeentrega" value="<?php echo $row['Fecha_Entrega']; ?>" required><br><br>
             <label for="resposable">Responsable</label><br>
-            <input type="text" id="responsable" name="responsable" value="<?php echo $row['responsable']; ?>"><br><br>
+            <input type="text2" id="responsable" name="responsable" value="<?php echo $row['responsable']; ?>" required><br><br>
             <label for="tipotarea">Tipo de tarea:</label><br>
-            <select id="tipo" name="tipo">
+            <select id="tipo" name="tipo" required>
               <option value="1" <?php if ($row['tipo'] == "Personal") echo "selected"; ?>>Personal</option>
               <option value="2" <?php if ($row['tipo'] == "Universidad") echo "selected"; ?>>Universidad</option>
               <option value="3" <?php if ($row['tipo'] == "Trabajo") echo "selected"; ?>>Trabajo</option>
           </select> <br><br>
-            <INPUT NAME="Modificartarea"   VALUE="Agregar" TYPE="submit"/>
+            <INPUT NAME="Modificartarea"   VALUE="Modificar" TYPE="submit"/>
         </form> 
         </center>
     </body>

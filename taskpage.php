@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Añadir una tarea
+            Agregar
         </title>
         <meta charset="UTF-8">
         <style>
@@ -43,6 +43,38 @@
             .icon-bar a:hover {
               background-color: #555;
             }
+
+            form input[type="submit"] {
+              padding: 5px 10px;
+            background: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+}
+
+            form input[type="text"] {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+}
+
+form input[type="text1"] {
+    width: 400px;
+    height: 30px;
+}
+
+form input[type="text2"] {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+}
+            form label {
+    font-weight: bold;
+}
+
+
             
           </style>
     </head>
@@ -56,11 +88,11 @@
         <p><h1>Agregar una tarea</h1></p>
         <form action="taskpage.php" method="post">
             <label for="Titu">Titutlo:</label><br>
-            <input type="text" id="titulo" name="titulo" value=""><br><br>
+            <input type="text" id="titulo" name="titulo" value="" required><br><br>
             <label for="descrip">Descripcion:</label><br>
-            <input type="text" id="descripcion" name="descripcion" value=""><br><br>
+            <input type="text1" id="descripcion" name="descripcion" value="" required><br><br>
             <label for="fname">Estado:</label><br>
-              <select id="estado" name="estado">
+              <select id="estado" name="estado" required>
                 <option value="1">Por Hacer</option>
                 <option value="2">En progreso</option>
                 <option value="3">Terminado</option>
@@ -68,9 +100,9 @@
             <label>Fecha de Entrega</label><br>
             <input type="date" name="fechadeentrega" required><br><br>
             <label for="resposable">Responsable</label><br>
-            <input type="text" id="responsable" name="responsable" value=""><br><br>
+            <input type="text2" id="responsable" name="responsable" value="" required><br><br>
             <label for="tipotarea">Tipo de tarea:</label><br>
-            <select id="tipo" name="tipo">
+            <select id="tipo" name="tipo" required>
               <option value="1">Personal</option>
               <option value="2">Universidad</option>
               <option value="3">Trabajo</option>

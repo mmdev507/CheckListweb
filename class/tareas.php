@@ -25,7 +25,7 @@ public function consultar_tareas(){
     $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
 
     if (!$resultado){ 
-        echo "No hay tareas disponibles |";
+        echo "No hay registros de tareas |";
     } 
     else {
         return $resultado;
@@ -89,7 +89,7 @@ public function consultar_tareas_estado($estado){
     $resultado=$consulta->fetch_ALL(MYSQLI_ASSOC);
 
     if (!$resultado){ 
-        echo "No hay registro por estado de tarea |";
+        echo "No hay registros para este estado |";
     } 
     else {
         return $resultado;
@@ -116,7 +116,7 @@ public function consultar_tareas_tipo($tipo){
     $resultado=$consulta->fetch_ALL(MYSQLI_ASSOC);
 
     if (!$resultado){ 
-        echo "No hay registro por tipo de tarea |";
+        echo "No hay registros para este tipo |";
     } 
     else {
         return $resultado;
@@ -217,12 +217,12 @@ public function consultar_registro($id) {
     $consulta = $this->_db->query($instruccion);
 
     if ($consulta) { 
-        // Verifica si la consulta se realizó con éxito
+        
         $resultado = $consulta->fetch_assoc();
-        $consulta->close(); // Cierra la consulta
+        $consulta->close(); 
 
         if ($resultado) {
-            // Si se encontraron resultados
+        
             return $resultado;
         } else {
             echo "No se encontraron registros con el ID proporcionado.";
@@ -234,7 +234,14 @@ public function consultar_registro($id) {
     return null;
 }
 
-
+public function eliminar_registro($id){
+    $instruccion = "CALL sp_borrar_tareas($id)";
+    if ($this->_db->query($instruccion) === TRUE) {
+        return "Registro eliminado correctamente.";
+    } else {
+        return "Error al eliminar el registro: " . $this->_db->error;
+    }
+}
 
 }
 ?>

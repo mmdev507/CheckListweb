@@ -65,7 +65,7 @@
 <BODY>
 <div class="icon-bar">
             <a href="\CheckListweb\reporte.php">Reporte</a>
-            <a href="\CheckListweb\index.php">Tablero</a>
+            <a href="\CheckListweb\index.php">Dashboard</a>
             <a href="#">Inicio</a>
         </div>
 <Center>       
@@ -133,7 +133,7 @@ if(array_key_exists('ConsultarEstado', $_POST)) {
   if ($tareas !== null) {
     $nfilas = count($tareas);
 } else {
-  echo "No hay registros por estado";
+  echo "No hay registros para este estado";
 }
 }
 
@@ -147,7 +147,7 @@ if(array_key_exists('Consultartipo', $_POST)) {
   if ($tareas !== null) {
     $nfilas = count($tareas);
 } else {
-  echo "No hay registros por tipo";
+  echo "No hay registros para este tipo ";
 }
 }
 
@@ -161,11 +161,17 @@ if (array_key_exists('fechas', $_POST)) {
   if ($tareas !== null) {
       $nfilas = count($tareas);
   } else {
-    echo "No hay registros";
+    echo " No hay tareas para este rango";
   }
 } 
 
-$nfilas=count($tareas);
+if (!empty($tareas)) {
+  $nfilas = count($tareas);
+} else {
+  $nfilas = 0;
+}
+
+//$nfilas=count($tareas);
 
 if ($nfilas>0)
 {
@@ -200,7 +206,7 @@ print("</TABLE>\n");
 }
 
 else {
-    print (" No hay tareas disponibles");
+    print ("");
 }
 
 
