@@ -180,7 +180,7 @@ $resultado3 = $tareas3->consultar_tareas_estado3();
 echo '<div class="kanban-column">';
 echo '<div class="kanban-card">';
 
-if (empty($resultado1)) {
+if (empty($resultado3)) {
   echo "No hay tareas registradas.";
 } else {
 foreach ($resultado3 as $row) {
