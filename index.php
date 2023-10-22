@@ -75,7 +75,7 @@
       <div class="icon-bar">
           <a href="\CheckListweb\reporte.php">Reporte</a>
           <a href="\CheckListweb\index.php">Dashboard</a>
-          <a href="#">Inicio</a>
+          <a href="\CheckListweb\inicio.php">Inicio</a>
       </div>
 
       <div><h1><center>Dashboard</center></h1></div>
@@ -141,9 +141,10 @@ echo '<div class="kanban-board">';
       echo '<div class="kanban-card">';
       echo '<div class="card-title1">';
     //  echo '<div class="card-title">' . $row['id'] . '</div>';
-      echo '<div class="card-title">' . $row['titulo'] . '</div>';
-      echo '<div class="card-description">' . $row['descripcion'] . '</div>';
-      echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+      echo '<div class="card-title">Titulo: ' . $row['titulo'] . '</div>';
+      echo '<div class="card-description">Descripción: ' . $row['descripcion'] . '</div>';
+      echo '<div class="card-fecha">Fecha de Entrega: ' . $row['Fecha_Entrega'] . '</div>';
+      echo '<div class="card-asignado">Asignado a: ' . $row['responsable'] . '</div><br>';
 
       
       if (strtotime($row['fecha_modificacion']) !== false) {
@@ -176,9 +177,10 @@ foreach ($resultado2 as $row) {
     echo '<div class="kanban-card">';
     echo '<div class="card-title2">';
     //  echo '<div class="card-title">' . $row['id'] . '</div>';
-    echo '<div class="card-title">' . $row['titulo'] . '</div>';
-    echo '<div class="card-description">' . $row['descripcion'] . '</div>';
-    echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+    echo '<div class="card-title">Titulo: ' . $row['titulo'] . '</div>';
+    echo '<div class="card-description">Descripción: ' . $row['descripcion'] . '</div>';
+    echo '<div class="card-fecha">Fecha de Entega: ' . $row['Fecha_Entrega'] . '</div>';
+    echo '<div class="card-asignado">Asignado a: ' . $row['responsable'] . '</div><br>';
 
     
     if (strtotime($row['fecha_modificacion']) !== false) {
@@ -214,9 +216,10 @@ foreach ($resultado3 as $row) {
     echo '<div class="kanban-card">';
     echo '<div class="card-title3">';
     //  echo '<div class="card-title">' . $row['id'] . '</div>';
-    echo '<div class="card-title">' . $row['titulo'] . '</div>';
-    echo '<div class="card-description">' . $row['descripcion'] . '</div>';
-    echo '<div class="card-fecha">' . $row['Fecha_Entrega'] . '</div>';
+    echo '<div class="card-title">Titulo: ' . $row['titulo'] . '</div>';
+    echo '<div class="card-description">Descripción: ' . $row['descripcion'] . '</div>';
+    echo '<div class="card-fecha">Fecha de Entrega: ' . $row['Fecha_Entrega'] . '</div>';
+    echo '<div class="card-asignado">Asignado a: ' . $row['responsable'] . '</div><br>';
 
     if (strtotime($row['fecha_modificacion']) !== false) {
       echo '<div class="bandera"><img src="\CheckListweb\img\Banderaroja.png"  width="20" height="20"></div>';

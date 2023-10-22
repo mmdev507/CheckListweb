@@ -80,7 +80,7 @@ form input[type="text2"] {
         <div class="icon-bar">
             <a href="\CheckListweb\reporte.php">Reporte</a>
             <a href="\CheckListweb\index.php">Dashboard</a>
-            <a href="#">Inicio</a>
+            <a href="\CheckListweb\inicio.php">Inicio</a>
         </div>
         <?php
 

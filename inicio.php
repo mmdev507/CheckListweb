@@ -75,17 +75,17 @@
   <body>
       <div class="icon-bar">
           <a href="\CheckListweb\reporte.php"></a>
-          <a href="\CheckListweb\tablero.php"></a>
+          <a href="\CheckListweb\index.php"></a>
           <!-- <a href="#">Inicio</a> -->
       </div>
       <br>
       <br>      
-      <center><img src="utp.jpg" alt="UTP" width="150" height="150"></center>
+      <center><img src="\CheckListweb\img\utp.jpg" alt="UTP" width="150" height="150"></center>
       <div><h1><center>Bienvenido a TaskListWeb</center></h1></div>
       
       <br>
       <center>
-      <form action="tablero.php">
+      <form action="index.php">
         <button class="card-button" type="submit">Iniciar</button>
       </form>
       </center> 
