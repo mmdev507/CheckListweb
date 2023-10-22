@@ -66,7 +66,7 @@
 <div class="icon-bar">
             <a href="\CheckListweb\reporte.php">Reporte</a>
             <a href="\CheckListweb\index.php">Dashboard</a>
-            <a href="#">Inicio</a>
+            <a href="\CheckListweb\inicio.php">Inicio</a>
         </div>
 <Center>       
 <H1>Reporte de Tareas</H1>
